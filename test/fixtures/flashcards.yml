@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  main_word: MyString
+  correct_answer: MyString
+  options: MyString
+  category: MyString
+
+two:
+  main_word: MyString
+  correct_answer: MyString
+  options: MyString
+  category: MyString
