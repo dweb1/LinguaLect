@@ -3,9 +3,9 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const Category = (props) => {
-    render(
+    return(
         <div>
-            <p> {props.name}</p>
+            <p> {props.category}</p>
         </div>
     )
 }

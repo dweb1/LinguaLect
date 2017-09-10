@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :flashcards
 
   namespace :api do
-    resources :flashcards
+    resources :categories do
+      resources :flashcards
+    end
   end
 
 end
