@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  root to: 'flashcards#index'
+
+  resources :flashcards
+
+  namespace :api do
+    resources :flashcards
+  end
+
 end
