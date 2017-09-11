@@ -38,7 +38,6 @@ class CategoryList extends Component {
             <CatListBox>
             {this.state.categories.map((category) => (
                 <Category key={category.id} category={category} />
-
             ))}
             </CatListBox>
         )

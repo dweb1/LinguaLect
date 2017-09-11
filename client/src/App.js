@@ -14,12 +14,32 @@ const Nav = styled.div`
 const NavButton = styled.div`
   background-color:white;
   margin: 20px 0;
-  color: #355fa3
+  color: #355fa3;
 `
+
 const Logo = styled.div`
-  h1{
+  h1 {
+    color:white;
+  }
+  a {
     text-decoration: none
   }
+`
+
+const Footer = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #355fa3;
+  text-align: center;
+  color: white
+`
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 class App extends Component {
@@ -30,17 +50,23 @@ class App extends Component {
       <Router>
         <div className="App">
           <Nav>
-            <Logo>
+          <Logo>
             <Link to="/">
-              <h1>LinguaLect</h1>
+                <h1>LinguaLect</h1>
             </Link>
             </Logo>
-            <NavButton>
-              <Link to="/categories">Flashcard</Link>
-            </NavButton>
+            <Buttons>
+              <NavButton>
+                <Link to="/translate">Translate</Link>
+              </NavButton>
+              <NavButton>
+                <Link to="/categories">Flashcard</Link>
+              </NavButton>
+            </Buttons>
           </Nav>
           <Route exact path="/categories" component={CategoryList} />
           <Route exact path="/categories/:category_id/flashcards" component={Flashcard} />
+        <Footer>© 2017 -- David Weber</Footer>
         </div>
       </Router>
     );

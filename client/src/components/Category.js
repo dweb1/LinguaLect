@@ -5,16 +5,19 @@ import styled from 'styled-components'
 
 const CatCard = styled.div`
     width: 30%;
+    text-decoration: none;
     color: #355fa3;
     margin: 20px 0;
     box-shadow: 1px 1px 5px black;
     :hover {
         background-color: #355fa3;
-        color: white 
+        a {
+            color: white
+        }
     }
-    :a:link {
-        text-decoration: none 
-        
+    a {
+        text-decoration: none;
+        display: block
     }
 `
 
