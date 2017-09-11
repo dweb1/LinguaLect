@@ -3,6 +3,14 @@ import axios from 'axios';
 import Category from './Category';
 import styled from 'styled-components';
 
+const CatListBox = styled.div`
+    display: flex;
+    margin: 20px 5%;
+    width: 90%;
+    justify-content: space-around;
+    flex-wrap: wrap
+`
+
 class CategoryList extends Component {
     constructor(){
         super();
@@ -27,12 +35,12 @@ class CategoryList extends Component {
 
     render () {
         return (
-            <div>
+            <CatListBox>
             {this.state.categories.map((category) => (
-                <Category key={category.id} category={category.name} />
+                <Category key={category.id} category={category} />
 
             ))}
-            </div>
+            </CatListBox>
         )
     }
 }
