@@ -12,6 +12,16 @@ const OptionBox = styled.div`
     flex-wrap: wrap
 `
 
+const WordToGuess = styled.div`
+    width: 30%;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    margin: 20px 0;
+    box-shadow: 1px 1px 5px black;
+    margin: 0 auto
+`
+
 class Flashcard extends Component {
     
     constructor() {
@@ -61,7 +71,10 @@ class Flashcard extends Component {
     
         return (
         <div>
-            <p>Word: {this.state.flashcard.main_word}</p>
+            <WordToGuess>
+                <h5>YOUR WORD IS:</h5>
+                <p>{this.state.flashcard.main_word}</p>
+            </WordToGuess>
             <OptionBox>
             {this.state.flashcard.options.map((option, index) => {
                return <OptionCard key={index} id={index} word={option.word}/>
