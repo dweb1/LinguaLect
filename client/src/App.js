@@ -12,9 +12,27 @@ const Nav = styled.div`
   justify-content: space-between
 `
 const NavButton = styled.div`
-  background-color:white;
-  margin: 20px 0;
+  background-color: white;
+  text-decoration: none;
   color: #355fa3;
+  margin: 20px 15px;
+  padding: 15px 15px;
+  box-shadow: 1px 1px 5px black;
+  :hover {
+      background-color: rgba(53, 95, 163, 0.3);
+      a {
+          color: white
+      }
+  }
+  a {
+      text-decoration: none;
+      display: block
+  }
+`
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 30px;
 `
 
 const Logo = styled.div`
@@ -35,11 +53,6 @@ const Footer = styled.div`
   background-color: #355fa3;
   text-align: center;
   color: white
-`
-
-const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
 `
 
 class App extends Component {
