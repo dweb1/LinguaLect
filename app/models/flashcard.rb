@@ -10,6 +10,6 @@ class Flashcard < ApplicationRecord
                 'app_key': '127bf340b31bab6a0cbe8cbde38dae2e'
             }
         }
-        res.body
+        JSON.parse(res.body)
     end
 end

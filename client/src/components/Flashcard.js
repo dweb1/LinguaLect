@@ -37,15 +37,14 @@ class Flashcard extends Component {
         let categoryId = this.props.match.params.category_id
         categoryId -= 1
         const catName = this.state.categories[categoryId].name
-        const res =  await axios.get(`/api/categories/:category_id/flashcards/get_data/${catName}`)
-        console.log(catName)
-        console.log(res.data.results)
+        const res =  await axios.get(`/api/flashcards/get_data/${catName}`)
         this.setState({
-        //     // main_word: res.data.main_word,
-        // //     correct_answer: res.data.correct_answer,
-            options: res.data.results[0],
-        //     // category: res.data.category,
-        })
+            flashcard: {
+            main_word: res.data[0].word,
+            correct_answer: res.data[0].word,
+            options: res.data,
+            category: catName,
+        }})
     }
 
     render () {

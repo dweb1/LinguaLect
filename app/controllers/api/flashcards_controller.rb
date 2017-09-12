@@ -3,7 +3,9 @@ class Api::FlashcardsController < ApplicationController
     def pull_api_data_for_flashcard
         category = params[:category]
         @data = Flashcard.find_data_for_card(category)
-        puts @data[:results]
+        @data = @data['results'].shuffle
+        @data = @data[0..3]
+        puts @data
         render json: @data
     end
 
