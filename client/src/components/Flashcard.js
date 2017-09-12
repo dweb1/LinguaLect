@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import OptionCard from './OptionCard'
 
 class Flashcard extends Component {
     
@@ -51,7 +52,10 @@ class Flashcard extends Component {
     
         return (
         <div>
-            <p>Word: {this.state.main_word}</p>
+            <p>Word: {this.state.flashcard.main_word}</p>
+            {this.state.flashcard.options.map((option, index) => {
+               return <OptionCard key={index} id={index} word={option.word}/>
+            })}
         </div>
         )
     }
