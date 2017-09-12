@@ -1,5 +1,12 @@
 class Api::FlashcardsController < ApplicationController
 
+    def pull_api_data_for_flashcard
+        category = params[:category]
+        @data = Flashcard.find_data_for_card(category)
+        puts @data[:results]
+        render json: @data
+    end
+
     def index
         @flashcards = Flashcard.all 
         render json: @flashcards
