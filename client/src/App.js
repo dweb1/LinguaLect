@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CategoryList from './components/CategoryList';
+import { parseString } from 'xml2js'
 import Flashcard from "./components/Flashcard";
 import styled from 'styled-components';
 import axios from 'axios'
@@ -95,22 +96,18 @@ class App extends Component {
       let authToken = await axios.post('https://api.cognitive.microsoft.com/sts/v1.0/issueToken', {}, {
         headers: {'Ocp-Apim-Subscription-Key': '249fcfda00204d70855549cad0545a72'}})
       authToken = `Bearer ${authToken.data}`;
-      console.log(authToken)
-      const res = await axios.get(`http://api.microsofttranslator.com/V2/Http.svc/Translate?text=${this.state.flashcard.main_word}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
+      let res = await axios.get(`http://api.microsofttranslator.com/V2/Http.svc/Translate?text=${this.state.flashcard.main_word}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
         params: {
           'appid': authToken
         },
-        // headers: {
-        //   'Authorization': authToken
-        // }
       })
-      console.log(res);
-      const newState = {...this.state}
-      newState.flashcard.translated_main_word = res.data
-      this.setState(newState)
+      var xml = res.data
+      parseString(xml, (err, result) => {
+        const newState = {...this.state}  
+        newState.flashcard.translated_main_word = result.string._
+        this.setState(newState)
+      });
     } catch (error){
-      console.log("ERROR")
-      console.log(error.status)
       this.setState({error})
     }
   }
