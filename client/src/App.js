@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CategoryList from './components/CategoryList';
 import Flashcard from "./components/Flashcard";
-import "./App.css";
 import styled from 'styled-components';
 
 const Nav = styled.div`
   color: white;
-  background-color: #355fa3;
   display: flex;
+  background-color: rgba(53, 95, 163, 1);
   justify-content: space-between
 `
+
 const NavButton = styled.div`
   background-color: white;
   text-decoration: none;
@@ -19,7 +19,7 @@ const NavButton = styled.div`
   padding: 15px 15px;
   box-shadow: 1px 1px 5px black;
   :hover {
-      background-color: rgba(53, 95, 163, 0.3);
+    background-color: rgb(0, 72, 156);
       a {
           color: white
       }
@@ -38,6 +38,7 @@ const Buttons = styled.div`
 const Logo = styled.div`
   h1 {
     color:white;
+    padding: 15px 15px;
   }
   a {
     text-decoration: none

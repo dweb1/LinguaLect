@@ -5,7 +5,6 @@ class Api::FlashcardsController < ApplicationController
         @data = Flashcard.find_data_for_card(category)
         @data = @data['results'].shuffle
         @data = @data[0..3]
-        puts @data
         render json: @data
     end
 
