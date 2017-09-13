@@ -12,36 +12,22 @@ const CatListBox = styled.div`
 `
 
 class CategoryList extends Component {
-    constructor(){
-        super();
-        this.state = {
-            categories: []
-        }
+
+    componentWillMount = () => {
+        this.props.fetchCategories();
     }
 
-    componentWillMount() {
-        this._fetchCategories();
-    }
-    
-    _fetchCategories = async () => {
-        try {
-            const res = await axios.get('/api/categories');
-            const categories = res.data;
-            this.setState({categories});
-        } catch (error) {
-            this.setState({error});
-        }
-    }
+    render() {
 
-    render () {
-        return (
-            <CatListBox>
-            {this.state.categories.map((category) => (
-                <Category key={category.id} category={category} />
-            ))}
-            </CatListBox>
-        )
-    }
+    return (
+        <CatListBox>
+        {this.props.state.categories.map((category) => (
+            <Category fetchSpecificCategory={this.props.fetchSpecificCategory} key={category.id} category={category} />
+        ))}
+        </CatListBox>
+    )
 }
+}
+
 
 export default CategoryList;

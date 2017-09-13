@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import OptionCard from './OptionCard';
 import styled from 'styled-components'
 
@@ -24,69 +23,25 @@ const WordToGuess = styled.div`
 
 class Flashcard extends Component {
     
-    constructor() {
-        super();
-        this.state = {
-            error: "",
-            categories: [],
-            flashcard: {
-                main_word: "",
-                options: [],
-                correct_answer: "",
-                category: ""
-            }
-        }
-    }
-
     componentWillMount = async () => {
-        await this._fetchCategories();
-        this._fetchDataForFlashcard();
+        await this.props.fetchCategories();
+        this.props.fetchData();
     }
-
-    _fetchCategories = async () => {
-        try {
-            const res = await axios.get('/api/categories');
-            const categories = res.data;
-            this.setState({categories});
-        } catch (error) {
-            this.setState({error});
-        }
-    }
-
-    _fetchDataForFlashcard = async () => {
-        let categoryId = this.props.match.params.category_id
-        categoryId -= 1
-        const catName = this.state.categories[categoryId].name
-        const res =  await axios.get(`/api/flashcards/get_data/${catName}`)
-        this.setState({
-            flashcard: {
-            main_word: res.data[0].word,
-            correct_answer: res.data[0].word,
-            options: res.data.sort(function(a, b){return 0.5 - Math.random()}),
-            category: catName,
-        }})
-    }
-
-    _turnMainWordIntoLanguage = async () => {
-        
-    }
-
-    render () {
-    
+    render(){
         return (
         <div>
             <WordToGuess>
                 <h5>YOUR WORD IS:</h5>
-                <p>{this.state.flashcard.main_word}</p>
+                <p>{this.props.state.flashcard.main_word}</p>
             </WordToGuess>
             <OptionBox>
-            {this.state.flashcard.options.map((option, index) => {
+            {this.props.state.flashcard.options.map((option, index) => {
                return <OptionCard key={index} id={index} word={option.word}/>
             })}
             </OptionBox>
         </div>
         )
-    }
+}
 }
 
 export default Flashcard;

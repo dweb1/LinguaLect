@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 
@@ -22,14 +22,21 @@ const CatCard = styled.div`
     }
 `
 
-const Category = (props) => {
+class Category extends Component {
+
+    _submitCategory = (event) => {
+        this.props.fetchSpecificCategory(event, this.props.category)
+    }
+
+    render(){
     return(
         <CatCard>
-            <Link to={`/categories/${props.category.id}/flashcards`} >
-            <p> {props.category.name}</p>
+            <Link to={`/categories/${this.props.category.id}/flashcards`} onClick={this._submitCategory} >
+            <p> {this.props.category.name}</p>
             </Link>
         </CatCard>
     )
+}
 }
 
 export default Category;

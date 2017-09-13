@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CategoryList from './components/CategoryList';
 import Flashcard from "./components/Flashcard";
 import styled from 'styled-components';
+import axios from 'axios'
 
 const Nav = styled.div`
   color: white;
@@ -58,8 +59,60 @@ const Footer = styled.div`
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+        error: "",
+        language_code: "en",
+        language_name: "English",
+        categories: [],
+        flashcard: {
+            main_word: "",
+            options: [],
+            correct_answer: "",
+            category: ""
+          }
+      }
+  }
+
+  _fetchCategories = async () => {
+    try {
+        const res = await axios.get('/api/categories');
+        const categories = res.data;
+        this.setState({categories});
+    } catch (error) {
+        this.setState({error});
+    }
+  }
+
+  _fetchSpecificCategoryClicked = (event, category) => {
+    const newState = {...this.state}
+    newState.flashcard.category = category.name
+    this.setState(newState)
+  }
+
+  _fetchDataForFlashcard = async () => {
+    const catName = this.state.flashcard.category
+    const res =  await axios.get(`/api/flashcards/get_data/${catName}`)
+    this.setState({
+        flashcard: {
+        main_word: res.data[0].word,
+        correct_answer: res.data[0].word,
+        options: res.data.sort(function(a, b){return 0.5 - Math.random()}),
+        category: catName,
+    }})
+  }
+  
   render() {
     
+  const FlashcardComponent = () => (
+    <Flashcard state={this.state} fetchData={this._fetchDataForFlashcard} fetchCategories={this._fetchCategories}/>
+  )
+
+  const CategoryListComponent = () => (
+    <CategoryList fetchCategories={this._fetchCategories} fetchSpecificCategory={this._fetchSpecificCategoryClicked} state={this.state} />
+  )
+
     return (
       <Router>
         <div className="App">
@@ -78,8 +131,9 @@ class App extends Component {
               </NavButton>
             </Buttons>
           </Nav>
-          <Route exact path="/categories" component={CategoryList} />
-          <Route exact path="/categories/:category_id/flashcards" component={Flashcard} />
+          <Route exact path="/selectLanguage" />
+          <Route exact path="/categories" render={CategoryListComponent} />
+          <Route exact path="/categories/:category_id/flashcards" render={FlashcardComponent} />
         <Footer>© 2017 -- David Weber</Footer>
         </div>
       </Router>
