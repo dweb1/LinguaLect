@@ -13,11 +13,12 @@ const OptionBox = styled.div`
 
 const WordToGuess = styled.div`
     width: 30%;
+    text-align: center;
     text-decoration: none;
     background-color: red;
     color: white;
     margin: 20px 0;
-    box-shadow: 1px 1px 5px black;
+    border-radius: 4px;    
     margin: 0 auto
 `
 
@@ -57,7 +58,6 @@ class Flashcard extends Component {
         categoryId -= 1
         const catName = this.state.categories[categoryId].name
         const res =  await axios.get(`/api/flashcards/get_data/${catName}`)
-        console.log(res.data)
         this.setState({
             flashcard: {
             main_word: res.data[0].word,
@@ -65,6 +65,10 @@ class Flashcard extends Component {
             options: res.data.sort(function(a, b){return 0.5 - Math.random()}),
             category: catName,
         }})
+    }
+
+    _turnMainWordIntoLanguage = async () => {
+        
     }
 
     render () {

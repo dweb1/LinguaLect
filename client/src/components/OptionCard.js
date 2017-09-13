@@ -6,16 +6,14 @@ const OptionBox = styled.div`
     text-decoration: none;
     color: #355fa3;
     margin: 20px 0;
-    box-shadow: 1px 1px 5px black;
+    text-align: center;
+    background-color: rgb(230, 242, 255);
+    border-radius: 4px;
     :hover {
         background-color: #355fa3;
         p {
             color: white
         }
-    }
-    a {
-        text-decoration: none;
-        display: block
     }
 `
 
