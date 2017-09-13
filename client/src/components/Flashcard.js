@@ -57,11 +57,12 @@ class Flashcard extends Component {
         categoryId -= 1
         const catName = this.state.categories[categoryId].name
         const res =  await axios.get(`/api/flashcards/get_data/${catName}`)
+        console.log(res.data)
         this.setState({
             flashcard: {
             main_word: res.data[0].word,
             correct_answer: res.data[0].word,
-            options: res.data,
+            options: res.data.sort(function(a, b){return 0.5 - Math.random()}),
             category: catName,
         }})
     }
