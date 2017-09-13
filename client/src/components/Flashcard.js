@@ -25,14 +25,15 @@ class Flashcard extends Component {
     
     componentWillMount = async () => {
         await this.props.fetchCategories();
-        this.props.fetchData();
+        await this.props.fetchData();
+        this.props.translateWord();
     }
     render(){
         return (
         <div>
             <WordToGuess>
                 <h5>YOUR WORD IS:</h5>
-                <p>{this.props.state.flashcard.main_word}</p>
+                <p>{this.props.state.flashcard.translated_main_word}</p>
             </WordToGuess>
             <OptionBox>
             {this.props.state.flashcard.options.map((option, index) => {

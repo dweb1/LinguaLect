@@ -63,11 +63,16 @@ class App extends Component {
     super();
     this.state = {
         error: "",
-        language_code: "en",
-        language_name: "English",
+        languages: {
+          to_language_code: "it",
+          to_language_name: "Italian",
+          from_language_code: "en",
+          from_language_name: "English"
+        },
         categories: [],
         flashcard: {
             main_word: "",
+            translated_main_word: "",
             options: [],
             correct_answer: "",
             category: ""
@@ -82,6 +87,31 @@ class App extends Component {
         this.setState({categories});
     } catch (error) {
         this.setState({error});
+    }
+  }
+
+  _translateMainWord = async () => {
+    try {
+      let authToken = await axios.post('https://api.cognitive.microsoft.com/sts/v1.0/issueToken', {}, {
+        headers: {'Ocp-Apim-Subscription-Key': '249fcfda00204d70855549cad0545a72'}})
+      authToken = `Bearer ${authToken.data}`;
+      console.log(authToken)
+      const res = await axios.get(`http://api.microsofttranslator.com/V2/Http.svc/Translate?text=${this.state.flashcard.main_word}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
+        params: {
+          'appid': authToken
+        },
+        // headers: {
+        //   'Authorization': authToken
+        // }
+      })
+      console.log(res);
+      const newState = {...this.state}
+      newState.flashcard.translated_main_word = res.data
+      this.setState(newState)
+    } catch (error){
+      console.log("ERROR")
+      console.log(error.status)
+      this.setState({error})
     }
   }
 
@@ -100,13 +130,14 @@ class App extends Component {
         correct_answer: res.data[0].word,
         options: res.data.sort(function(a, b){return 0.5 - Math.random()}),
         category: catName,
+        translated_main_word: ""
     }})
   }
   
   render() {
     
   const FlashcardComponent = () => (
-    <Flashcard state={this.state} fetchData={this._fetchDataForFlashcard} fetchCategories={this._fetchCategories}/>
+    <Flashcard state={this.state} translateWord={this._translateMainWord} fetchData={this._fetchDataForFlashcard} fetchCategories={this._fetchCategories}/>
   )
 
   const CategoryListComponent = () => (

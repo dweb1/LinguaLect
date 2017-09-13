@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Category from './Category';
 import styled from 'styled-components';
 
