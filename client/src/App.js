@@ -17,7 +17,7 @@ const NavButton = styled.div`
   color: #355fa3;
   margin: 20px 15px;
   padding: 15px 15px;
-  box-shadow: 1px 1px 5px black;
+  border-radius: 4px;
   :hover {
     background-color: rgb(0, 72, 156);
       a {

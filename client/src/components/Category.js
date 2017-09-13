@@ -6,8 +6,10 @@ const CatCard = styled.div`
     width: 30%;
     text-decoration: none;
     color: #355fa3;
+    text-align: center;
     margin: 20px 0;
-    box-shadow: 1px 1px 5px black;
+    background-color: rgb(230, 242, 255);
+    border-radius: 4px;
     :hover {
         background-color: #355fa3;
         a {
