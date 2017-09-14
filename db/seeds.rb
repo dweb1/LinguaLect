@@ -10,3 +10,11 @@ Language.create({language_code: "tlh", language_name: "Klingon"})
 Language.create({language_code: "es", language_name: "Spanish"})
 Language.create({language_code: "ru", language_name: "Russian"})
 
+Category.destroy_all
+
+Category.create({name: "Art"})
+Category.create({name: "Food"})
+Category.create({name: "Education"})
+Category.create({name: "Geography"})
+Category.create({name: "Sport"})
+Category.create({name: "Clothing"})
