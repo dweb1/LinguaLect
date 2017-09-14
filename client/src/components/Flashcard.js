@@ -27,7 +27,6 @@ class Flashcard extends Component {
         var answerClicked = event.target.innerHTML;
         if (answerClicked === this.props.state.flashcard.main_word){
             alert("congrats")
-            this.forceUpdate();
             await this.props.fetchData();
             this.props.translateWord();
         } else (
