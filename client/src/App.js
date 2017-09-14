@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import CategoryList from './components/CategoryList';
 import Flashcard from "./components/Flashcard";
@@ -13,42 +13,6 @@ import { parseString } from 'xml2js'
 import { setAxiosDefaults } from './util';
 import styled from 'styled-components';
 import axios from 'axios'
-
-const Nav = styled.div`
-  color: white;
-  display: flex;
-  background-color: rgba(53, 95, 163, 1);
-  justify-content: space-between
-`
-
-const NavButton = styled.div`
-  background-color: white;
-  text-decoration: none;
-  color: #355fa3;
-  margin: 20px 15px;
-  padding: 15px 15px;
-  border-radius: 4px;
-  :hover {
-    background-color: rgb(0, 72, 156);
-      a {
-          color: white
-      }
-  }
-  a {
-      text-decoration: none;
-      display: block
-  }
-`
-
-const Logo = styled.div`
-  h1 {
-    color:white;
-    padding: 15px 15px;
-  }
-  a {
-    text-decoration: none
-  }
-`
 
 const Footer = styled.div`
   position: absolute;
