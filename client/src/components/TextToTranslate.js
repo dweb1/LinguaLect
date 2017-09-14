@@ -31,7 +31,7 @@ const TextToTranslate = (props) => {
         <TranslationBox>
             <form method="get">
                 <label>Text to translate:</label> <br/>
-                <textarea id="textEntered" name="userText" />
+                <textarea rows="8" cols="70" id="textEntered" name="userText" />
                 <Button onClick={handleClick}>Click here to translate</Button>
             </form>
         </TranslationBox>
