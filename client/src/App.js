@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CategoryList from './components/CategoryList';
 import { parseString } from 'xml2js'
 import Flashcard from "./components/Flashcard";
+import TranslatePage from "./components/TranslatePage";
 import styled from 'styled-components';
 import axios from 'axios'
 
@@ -68,7 +69,9 @@ class App extends Component {
           to_language_code: "it",
           to_language_name: "Italian",
           from_language_code: "en",
-          from_language_name: "English"
+          from_language_name: "English",
+          text_translated: null,
+          textEntered: null
         },
         categories: [],
         flashcard: {
@@ -90,6 +93,31 @@ class App extends Component {
         this.setState({error});
     }
   }
+
+  _translateText = async () => {
+    const textEntered = document.getElementById("textEntered").value;
+    const newState = {...this.state}
+    newState.languages.textEntered = textEntered
+    this.setState(newState)
+    try {
+        let authToken = await axios.post('https://api.cognitive.microsoft.com/sts/v1.0/issueToken', {}, {
+          headers: {'Ocp-Apim-Subscription-Key': '249fcfda00204d70855549cad0545a72'}})
+        authToken = `Bearer ${authToken.data}`;
+        let res = await axios.get(`http://api.microsofttranslator.com/V2/Http.svc/Translate?text=${textEntered}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
+          params: {
+            'appid': authToken
+          },
+        })
+        var xml = res.data
+        parseString(xml, (err, result) => {
+          const newState = {...this.state}  
+          newState.languages.text_translated = result.string._
+          this.setState(newState)
+        });
+      } catch (error){
+        this.setState({error})
+      }
+    }
 
   _translateMainWord = async () => {
     try {
@@ -141,6 +169,10 @@ class App extends Component {
     <CategoryList fetchCategories={this._fetchCategories} fetchSpecificCategory={this._fetchSpecificCategoryClicked} state={this.state} />
   )
 
+  const TranslatePageComponent = () => (
+    <TranslatePage translateText={this._translateText} state={this.state} />
+  )
+
     return (
       <Router>
         <div className="App">
@@ -162,6 +194,8 @@ class App extends Component {
           <Route exact path="/selectLanguage" />
           <Route exact path="/categories" render={CategoryListComponent} />
           <Route exact path="/categories/:category_id/flashcards" render={FlashcardComponent} />
+          <Route exact path="/translate" render={TranslatePageComponent} />
+
         <Footer>© 2017 -- David Weber</Footer>
         </div>
       </Router>
