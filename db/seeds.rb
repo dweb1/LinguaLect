@@ -1,3 +1,4 @@
+Flashcard.destroy_all
 Language.destroy_all
 
 Language.create({language_code: "en", language_name: "English"})
@@ -9,6 +10,7 @@ Language.create({language_code: "it", language_name: "Italian"})
 Language.create({language_code: "tlh", language_name: "Klingon"})
 Language.create({language_code: "es", language_name: "Spanish"})
 Language.create({language_code: "ru", language_name: "Russian"})
+Language.create({language_code: "pt", language_name: "Portuguese"})
 
 Category.destroy_all
 

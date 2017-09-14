@@ -23,21 +23,24 @@ const WordToGuess = styled.div`
 
 class Flashcard extends Component {
 
-    _testAnswer = (event) => {
+    _testAnswer = async (event) => {
         var answerClicked = event.target.innerHTML;
         if (answerClicked === this.props.state.flashcard.main_word){
             alert("congrats")
+            this.forceUpdate();
+            await this.props.fetchData();
+            this.props.translateWord();
         } else (
             alert("WRONG")
         )
     }
-    
     
     componentWillMount = async () => {
         await this.props.fetchCategories();
         await this.props.fetchData();
         this.props.translateWord();
     }
+
     render(){
         return (
         <div>

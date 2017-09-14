@@ -162,7 +162,7 @@ class App extends Component {
       let authToken = await axios.post('https://api.cognitive.microsoft.com/sts/v1.0/issueToken', {}, {
         headers: {'Ocp-Apim-Subscription-Key': '249fcfda00204d70855549cad0545a72'}})
       authToken = `Bearer ${authToken.data}`;
-      let res = await axios.get(`http://api.microsofttranslator.com/V2/Http.svc/Translate?text=${this.state.flashcard.main_word}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
+      let res = await axios.get(`https://api.microsofttranslator.com/V2/Http.svc/Translate?text=${this.state.flashcard.main_word}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
         params: {
           'appid': authToken
         },
