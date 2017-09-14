@@ -21,6 +21,7 @@ const SelectLanguage = (props) => {
             <IndivLangSelect>
                 <h3>Language to translate from:</h3>
                 <select onChange={props.languageFrom}>
+                    <option></option>
                     {props.languages.map((language, index) => {
                         return <option key={index} data-code={language.language_code} name={language.language_name}>{language.language_name}</option>
                     })}
@@ -29,6 +30,7 @@ const SelectLanguage = (props) => {
             <IndivLangSelect>
                 <h3>Language to translate to:</h3>
                 <select onChange={props.languageTo}>
+                    <option></option>
                     {props.languages.map((language, index) => {
                         return <option key={index} data-code={language.language_code} name={language.language_name}>{language.language_name}</option>
                     })}
