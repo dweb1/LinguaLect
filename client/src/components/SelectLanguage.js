@@ -20,17 +20,17 @@ const SelectLanguage = (props) => {
         <LanguageBox>
             <IndivLangSelect>
                 <h3>Language to translate from:</h3>
-                <select>
+                <select onChange={props.languageFrom}>
                     {props.languages.map((language, index) => {
-                        return <option key={index} value={language.language_name}>{language.language_name}</option>
+                        return <option key={index} data-code={language.language_code} name={language.language_name}>{language.language_name}</option>
                     })}
                 </select>
             </IndivLangSelect>
             <IndivLangSelect>
                 <h3>Language to translate to:</h3>
-                <select>
+                <select onChange={props.languageTo}>
                     {props.languages.map((language, index) => {
-                        return <option key={index} value={language.language_name}>{language.language_name}</option>
+                        return <option key={index} data-code={language.language_code} name={language.language_name}>{language.language_name}</option>
                     })}
                 </select>
             </IndivLangSelect>

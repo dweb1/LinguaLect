@@ -21,7 +21,7 @@ class CategoryList extends Component {
 
     return (
         <div>
-            <SelectLanguage languages={this.props.state.languages.all_languages} />
+            <SelectLanguage languageFrom={this.props.languageFrom} languageTo={this.props.languageTo} languages={this.props.state.languages.all_languages} />
             <CatListBox>       
             {this.props.state.categories.map((category) => (
                 <Category fetchSpecificCategory={this.props.fetchSpecificCategory} key={category.id} category={category} />

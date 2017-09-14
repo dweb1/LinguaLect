@@ -19,7 +19,7 @@ const Translation = styled.div`
 const TranslatePage = (props) => {
     return (
         <div>
-            <SelectLanguage languages={props.state.languages.all_languages} />
+            <SelectLanguage languageFrom={props.languageFrom} languageTo={props.languageTo} languages={props.state.languages.all_languages} />
             <TextToTranslate translateText={props.translateText} /><br/>
             <TranslationBox>
                 <Translation>

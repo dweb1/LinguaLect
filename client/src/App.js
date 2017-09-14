@@ -114,6 +114,24 @@ class App extends Component {
     }
   }
 
+  _languageToSelection = (event) => {
+    const languageToName = event.target.value;
+    const languageToCode = document.querySelector(`option[name=${languageToName}]`).getAttribute('data-code')    
+    const newState = {...this.state}
+    newState.languages.to_language_name = languageToName
+    newState.languages.to_language_code = languageToCode
+    this.setState(newState)
+  }
+
+  _languageFromSelection = (event) => {
+    const languageFromName = event.target.value;
+    const languageFromCode = document.querySelector(`option[name=${languageFromName}]`).getAttribute('data-code')    
+    const newState = {...this.state}
+    newState.languages.from_language_name = languageFromName
+    newState.languages.from_language_code = languageFromCode
+    this.setState(newState)
+  }
+
   _translateText = async () => {
     const textEntered = document.getElementById("textEntered").value;
     const newState = {...this.state}
@@ -186,11 +204,11 @@ class App extends Component {
   )
 
   const CategoryListComponent = () => (
-    <CategoryList fetchCategories={this._fetchCategories} fetchSpecificCategory={this._fetchSpecificCategoryClicked} state={this.state} />
+    <CategoryList languageTo={this._languageToSelection} languageFrom={this._languageFromSelection} fetchCategories={this._fetchCategories} fetchSpecificCategory={this._fetchSpecificCategoryClicked} state={this.state} />
   )
 
   const TranslatePageComponent = () => (
-    <TranslatePage translateText={this._translateText} state={this.state} />
+    <TranslatePage languageTo={this._languageToSelection} languageFrom={this._languageFromSelection} translateText={this._translateText} state={this.state} />
   )
 
     return (
