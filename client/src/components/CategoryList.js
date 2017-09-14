@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Category from './Category';
 import styled from 'styled-components';
+import SelectLanguage from './SelectLanguage'
 
 const CatListBox = styled.div`
     display: flex;
@@ -19,11 +20,14 @@ class CategoryList extends Component {
     render() {
 
     return (
-        <CatListBox>
-        {this.props.state.categories.map((category) => (
-            <Category fetchSpecificCategory={this.props.fetchSpecificCategory} key={category.id} category={category} />
-        ))}
-        </CatListBox>
+        <div>
+            <SelectLanguage languages={this.props.state.languages.all_languages} />
+            <CatListBox>       
+            {this.props.state.categories.map((category) => (
+                <Category fetchSpecificCategory={this.props.fetchSpecificCategory} key={category.id} category={category} />
+            ))}
+            </CatListBox>
+        </div>
     )
 }
 }

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'flashcards/get_data/:category', to: "flashcards#pull_api_data_for_flashcard"
+    resources :languages
     resources :categories do
       resources :flashcards
     end

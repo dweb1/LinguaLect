@@ -3,9 +3,16 @@ import React from 'react';
 const SelectLanguage = (props) => {
     return (
         <div>
+            <h3>Language to translate from:</h3>
             <select>
-                {props.categories.map((category, index) => {
-                    return <option key={index} value={category.name}>{category.name}</option>
+                {props.languages.map((language, index) => {
+                    return <option key={index} value={language.language_name}>{language.language_name}</option>
+                })}
+            </select>
+            <h3>Language to translate to:</h3>
+            <select>
+                {props.languages.map((language, index) => {
+                    return <option key={index} value={language.language_name}>{language.language_name}</option>
                 })}
             </select>
         </div>

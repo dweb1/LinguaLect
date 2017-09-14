@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CategoryList from './components/CategoryList';
 import Flashcard from "./components/Flashcard";
 import TranslatePage from "./components/TranslatePage";
-import SelectLanguage from './components/SelectLanguage'
 
 import { parseString } from 'xml2js'
 import styled from 'styled-components';
@@ -74,7 +73,8 @@ class App extends Component {
           from_language_code: "en",
           from_language_name: "English",
           text_translated: null,
-          textEntered: null
+          textEntered: null,
+          all_languages: []
         },
         categories: [],
         flashcard: {
@@ -89,6 +89,7 @@ class App extends Component {
 
   componentWillMount = () => {
     this._fetchCategories();
+    this._fetchLanguages();
   }
 
   _fetchCategories = async () => {
@@ -96,6 +97,18 @@ class App extends Component {
         const res = await axios.get('/api/categories');
         const categories = res.data;
         this.setState({categories});
+    } catch (error) {
+        this.setState({error});
+    }
+  }
+
+  _fetchLanguages = async () => {
+    try {
+        const res = await axios.get('/api/languages');
+        const languages = res.data;
+        const newState = {...this.state}
+        newState.languages.all_languages = languages
+        this.setState(newState);
     } catch (error) {
         this.setState({error});
     }
@@ -180,10 +193,6 @@ class App extends Component {
     <TranslatePage translateText={this._translateText} state={this.state} />
   )
 
-  const SelectLanguageComponent = () => (
-    <SelectLanguage categories={this.state.categories} />
-  )
-
     return (
       <Router>
         <div className="App">
@@ -202,7 +211,6 @@ class App extends Component {
               </NavButton>
             </Buttons>
           </Nav>
-          <Route exact path="/selectLanguage" render={SelectLanguageComponent} />
           <Route exact path="/categories" render={CategoryListComponent} />
           <Route exact path="/categories/:category_id/flashcards" render={FlashcardComponent} />
           <Route exact path="/translate" render={TranslatePageComponent} />
