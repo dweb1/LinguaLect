@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import CategoryList from './components/CategoryList';
-import { parseString } from 'xml2js'
 import Flashcard from "./components/Flashcard";
 import TranslatePage from "./components/TranslatePage";
+import SelectLanguage from './components/SelectLanguage'
+
+import { parseString } from 'xml2js'
 import styled from 'styled-components';
 import axios from 'axios'
 
@@ -82,6 +85,10 @@ class App extends Component {
             category: ""
           }
       }
+  }
+
+  componentWillMount = () => {
+    this._fetchCategories();
   }
 
   _fetchCategories = async () => {
@@ -173,6 +180,10 @@ class App extends Component {
     <TranslatePage translateText={this._translateText} state={this.state} />
   )
 
+  const SelectLanguageComponent = () => (
+    <SelectLanguage categories={this.state.categories} />
+  )
+
     return (
       <Router>
         <div className="App">
@@ -191,7 +202,7 @@ class App extends Component {
               </NavButton>
             </Buttons>
           </Nav>
-          <Route exact path="/selectLanguage" />
+          <Route exact path="/selectLanguage" render={SelectLanguageComponent} />
           <Route exact path="/categories" render={CategoryListComponent} />
           <Route exact path="/categories/:category_id/flashcards" render={FlashcardComponent} />
           <Route exact path="/translate" render={TranslatePageComponent} />
