@@ -1,5 +1,5 @@
 class Api::FlashcardsController < ApplicationController
-
+    before_action :authenticate_user!
     def pull_api_data_for_flashcard
         category = params[:category]
         @data = Flashcard.find_data_for_card(category)

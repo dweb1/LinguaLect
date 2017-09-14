@@ -4,8 +4,13 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CategoryList from './components/CategoryList';
 import Flashcard from "./components/Flashcard";
 import TranslatePage from "./components/TranslatePage";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+import Home from "./components/Home"
+import NavBar from "./components/NavBar"
 
 import { parseString } from 'xml2js'
+import { setAxiosDefaults } from './util';
 import styled from 'styled-components';
 import axios from 'axios'
 
@@ -33,11 +38,6 @@ const NavButton = styled.div`
       text-decoration: none;
       display: block
   }
-`
-const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 30px;
 `
 
 const Logo = styled.div`
@@ -90,6 +90,7 @@ class App extends Component {
   componentWillMount = () => {
     this._fetchCategories();
     this._fetchLanguages();
+    setAxiosDefaults();
   }
 
   _fetchCategories = async () => {
@@ -214,21 +215,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Nav>
-          <Logo>
-            <Link to="/">
-                <h1>LinguaLect</h1>
-            </Link>
-            </Logo>
-            <Buttons>
-              <NavButton>
-                <Link to="/translate">Translate</Link>
-              </NavButton>
-              <NavButton>
-                <Link to="/categories">Flashcard</Link>
-              </NavButton>
-            </Buttons>
-          </Nav>
+          <div>
+            <NavBar />  
+          </div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signUp" component={SignUp} />
+          <Route exact path="/signIn" component={SignIn} />
           <Route exact path="/categories" render={CategoryListComponent} />
           <Route exact path="/categories/:category_id/flashcards" render={FlashcardComponent} />
           <Route exact path="/translate" render={TranslatePageComponent} />
