@@ -1,24 +1,22 @@
-# README
+# LinguaLect - A Language Learning App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description of App
+This App permits users to either quiz themselves on basic vocab based on specific categories or translate text from/into 10 different languages (English, Spanish, Arabic, German, Italian, French, Portguese, Hindi, Russian, and Klingon).
 
-Things you may want to cover:
+## Technologies/Frameworks Used:
+* React on Rails
+* PostgreSQL Database
+* Heroku
+* Node.js
+* Oxford Dictionaries API
+* Microsoft Cognitive Services - Translation API
 
-* Ruby version
+## Links
+[Trello](https://trello.com/b/WOIEdq7f/final-project-lingualect)
+[Live site on Heroku](https://lingua-lect.herokuapp.com/)
 
-* System dependencies
+## ERDs
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Wireframes
+![Wireframe](https://i.imgur.com/hxaDR6R.jpg?1 "Wireframe")
+![Wireframe](https://i.imgur.com/Jt9w56p.jpg?1 "Wireframe")
