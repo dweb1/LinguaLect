@@ -1,6 +1,4 @@
 import React  from 'react';
-import axios from 'axios';
-import { parseString } from 'xml2js'
 import styled from 'styled-components'
 
 const Button = styled.div`
@@ -13,13 +11,8 @@ const Button = styled.div`
     border-radius: 4px;
     :hover {
         background-color: #355fa3;
-        a {
-            color: white
+        color: white
         }
-    }
-    a {
-        text-decoration: none;
-        display: block
     }
 `
 
