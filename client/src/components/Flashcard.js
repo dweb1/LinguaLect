@@ -22,6 +22,16 @@ const WordToGuess = styled.div`
 `
 
 class Flashcard extends Component {
+
+    _testAnswer = (event) => {
+        var answerClicked = event.target.innerHTML;
+        if (answerClicked === this.props.state.flashcard.main_word){
+            alert("congrats")
+        } else (
+            alert("WRONG")
+        )
+    }
+    
     
     componentWillMount = async () => {
         await this.props.fetchCategories();
@@ -37,7 +47,7 @@ class Flashcard extends Component {
             </WordToGuess>
             <OptionBox>
             {this.props.state.flashcard.options.map((option, index) => {
-               return <OptionCard key={index} id={index} word={option.word}/>
+               return <OptionCard testAnswer={this._testAnswer} key={index} id={index} word={option.word}/>
             })}
             </OptionBox>
         </div>

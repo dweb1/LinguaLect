@@ -20,7 +20,7 @@ const OptionBox = styled.div`
 
 const OptionCard = (props) => {
     return (
-        <OptionBox>
+        <OptionBox onClick={props.testAnswer}>
         <p>{props.word}</p>
         </OptionBox>
     );
