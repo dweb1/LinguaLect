@@ -68,10 +68,10 @@ class App extends Component {
     this.state = {
         error: "",
         languages: {
-          to_language_code: "it",
-          to_language_name: "Italian",
-          from_language_code: "en",
-          from_language_name: "English",
+          to_language_code: null,
+          to_language_name: null,
+          from_language_code: null,
+          from_language_name: null,
           text_translated: null,
           textEntered: null,
           all_languages: []

@@ -6,7 +6,7 @@ const Button = styled.div`
     text-decoration: none;
     color: #355fa3;
     text-align: center;
-    margin: 20px 0;
+    margin: 10px auto;
     background-color: rgb(230, 242, 255);
     border-radius: 4px;
     :hover {
@@ -14,6 +14,10 @@ const Button = styled.div`
         color: white
         }
     }
+`
+
+const TranslationBox = styled.div`
+    text-align: center
 `
 
 const TextToTranslate = (props) => {
@@ -24,13 +28,13 @@ const TextToTranslate = (props) => {
       };
 
     return (
-        <div>
+        <TranslationBox>
             <form method="get">
                 <label>Text to translate:</label> <br/>
                 <textarea id="textEntered" name="userText" />
                 <Button onClick={handleClick}>Click here to translate</Button>
             </form>
-        </div>
+        </TranslationBox>
     )
 }
 
