@@ -140,7 +140,7 @@ class App extends Component {
         }
       })
       authToken = `Bearer ${authToken.data}`;
-      let res = await axios.get(`http://api.microsofttranslator.com/V2/Http.svc/Translate?text=${textEntered}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
+      let res = await axios.get(`https://api.microsofttranslator.com/V2/Http.svc/Translate?text=${textEntered}&from=${this.state.languages.from_language_code}&to=${this.state.languages.to_language_code}`, {
         transformRequest: [(data, headers) => {
           delete headers['access-token']
           delete headers['uid']
