@@ -28,7 +28,8 @@ const Buttons = styled.div`
     margin: 10px 30px;
 `
 
-const Home = () => {
+const Home = (props) => {
+    if (props.state.user.email) {
     return (
         <Buttons>
               <HomeButton>
@@ -39,6 +40,12 @@ const Home = () => {
               </HomeButton>
         </Buttons>
     );
+}
+ return (
+    <div>
+        <p> Login or Sign up, please</p>
+    </div>
+    )
 };
 
 export default Home;

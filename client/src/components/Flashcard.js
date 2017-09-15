@@ -35,7 +35,6 @@ class Flashcard extends Component {
     }
     
     componentWillMount = async () => {
-        await this.props.fetchCategories();
         await this.props.fetchData();
         this.props.translateWord();
     }

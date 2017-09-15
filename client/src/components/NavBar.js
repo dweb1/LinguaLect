@@ -43,38 +43,47 @@ const Buttons = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 10px 30px;
+    span {
+        padding-top: 40px;
+    }
 `
 
 class NavBar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: {},
-      loggedIn: false
-    };
-  }
+    
+    constructor() {
+        super();
+        this.state = {
+          user: {},
+          loggedIn: false,
+        }
+    }
 
-  componentWillMount() {
-    this._isLoggedIn();
-  }
-  componentWillReceiveProps() {
-    this._isLoggedIn();
-  }
+    componentWillMount() {
+        this._isLoggedIn();
+      }
+    
+    
+    componentWillReceiveProps(nextState) {
+        if(nextState.state.user.uid !== this.state.user.uid){
+            this._isLoggedIn();
+        }
+    }
 
-  _isLoggedIn = async () => {
-    const response = await axios.get("/auth/validate_token");
-    this.setState({
-      user: response.data.data,
-      loggedIn: response.data.success
-    });
-  };
-  
-  _logOut = async () => {
-    console.log("CLICK");
-    const response = await axios.delete("/auth/sign_out");
-    //Forces refresh of browser
-    window.location.reload();
-  };
+    _isLoggedIn = async () => {
+        const response = await axios.get("/auth/validate_token");
+        this.setState({
+          user: response.data.data,
+          loggedIn: response.data.success
+        });
+        this.props.addUserToState(response);
+      };
+      
+      _logOut = async () => {
+        console.log("CLICK");
+        const response = await axios.delete("/auth/sign_out");
+        //Forces refresh of browser
+        window.location.reload();
+      };
 
   render() {
     if (this.state.loggedIn) {
@@ -85,10 +94,12 @@ class NavBar extends Component {
               <h1>LinguaLect</h1>
           </Link>
         </Logo>
-        <div>
+        <Buttons>
             <span>Signed In As: {this.state.user.email}</span>
-            <a href="#" onClick={this._logOut}> Log Out </a>
-        </div>
+            <NavButton>
+            <a href="/" onClick={() => this._logOut()}> Log Out </a>
+            </NavButton>
+        </Buttons>
         </Nav>
       );
     }

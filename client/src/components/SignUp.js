@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import {setAxiosHeaders} from '../util'
+import styled from 'styled-components'
+
+const Form = styled.div`
+  width: 30%;
+  background-color: rgb(230, 242, 255);
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 5px
+`
 
 class SignUp extends Component {
  constructor(){
@@ -42,7 +51,7 @@ class SignUp extends Component {
      return <Redirect to="/" />
    }
    return (
-     <div>
+     <Form>
        <form onSubmit={this._signUp}>
          <div>
            <label htmlFor="email">E-mail: </label>
@@ -60,7 +69,7 @@ class SignUp extends Component {
          <button>Sign Up</button>
          <button onClick={this._signIn}>Log In</button>
        </form>
-     </div>
+     </Form>
    );
  }
 }
