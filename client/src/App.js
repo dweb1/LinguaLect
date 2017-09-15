@@ -251,7 +251,6 @@ class App extends Component {
   };
 
   _logOut = async () => {
-    console.log("CLICK");
     const response = await axios.delete("/auth/sign_out");
     //Forces refresh of browser
     window.location.reload();
