@@ -17,6 +17,7 @@ This App permits users to either quiz themselves on basic vocab based on specifi
 [Live site on Heroku](https://lingua-lect.herokuapp.com/)
 
 ## ERDs
+![ERDs](https://i.imgur.com/aiiFBiv.jpg?1 "ERDs")
 
 ## Wireframes
 ![Wireframe](https://i.imgur.com/hxaDR6R.jpg?1 "Wireframe")
