@@ -2,13 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
+const Welcome = styled.div`
+    margin: 0 auto;
+    h2 {
+        text-align: center;
+        color: red;
+        text-decoration: underline
+    }
+`
+
+const GoLogIn = styled.div`
+    width: 50%;
+    background-color: rgb(230, 242, 255);
+    height: 150px;
+    text-align: center;
+    margin: 75px auto;
+    padding-top: 115px;
+    font-size: 33px
+
+`
 
 const HomeButton = styled.div`
     width: 30%;
     text-decoration: none;
     color: #355fa3;
     text-align: center;
-    margin: 20px 0;
+    margin: 75px 0;
     background-color: rgb(230, 242, 255);
     border-radius: 4px;
     :hover {
@@ -42,9 +61,12 @@ const Home = (props) => {
     );
 }
  return (
-    <div>
-        <p> Login or Sign up, please</p>
-    </div>
+    <Welcome>
+        <h2>Welcome to LinguaLect - A Language App</h2>
+        <GoLogIn>
+             <strong> Login or Sign up, please</strong>
+        </GoLogIn>
+    </Welcome>
     )
 };
 
