@@ -14,7 +14,7 @@ const CatListBox = styled.div`
 class CategoryList extends Component {
 
     componentWillMount = () => {
-        this.props.fetchCategories();
+        this.props.loadData();
     }
 
     render() {

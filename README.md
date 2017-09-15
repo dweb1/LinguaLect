@@ -13,6 +13,7 @@ This App permits users to either quiz themselves on basic vocab based on specifi
 
 ## Links
 [Trello](https://trello.com/b/WOIEdq7f/final-project-lingualect)
+
 [Live site on Heroku](https://lingua-lect.herokuapp.com/)
 
 ## ERDs
