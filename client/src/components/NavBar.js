@@ -31,8 +31,8 @@ const NavButton = styled.div`
 
 const Logo = styled.div`
     h1 {
-    color:white;
-    padding: 15px 15px;
+        color:white;
+        padding: 15px 15px;
     }
     a {
     text-decoration: none

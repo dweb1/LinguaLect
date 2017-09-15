@@ -7,7 +7,8 @@ const Welcome = styled.div`
     h2 {
         text-align: center;
         color: red;
-        text-decoration: underline
+        text-decoration: underline;
+        font-family: 'Archivo Black', sans-serif;        
     }
 `
 
