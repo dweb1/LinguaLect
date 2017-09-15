@@ -63,7 +63,7 @@ const Home = (props) => {
 }
  return (
     <Welcome>
-        <h2>Welcome to LinguaLect - A Language App</h2>
+        <h2>Welcome to LinguaLect - A Language Learning App</h2>
         <GoLogIn>
              <strong> Login or Sign up, please</strong>
         </GoLogIn>
