@@ -18,7 +18,7 @@ const GoLogIn = styled.div`
     height: 150px;
     text-align: center;
     margin: 75px auto;
-    padding-top: 115px;
+    padding-top: 100px;
     font-size: 33px
 
 `
