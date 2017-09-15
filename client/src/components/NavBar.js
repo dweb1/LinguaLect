@@ -50,43 +50,25 @@ const Buttons = styled.div`
 
 class NavBar extends Component {
     
-    constructor() {
-        super();
-        this.state = {
-          user: {},
-          loggedIn: false,
-        }
-    }
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //       user: {},
+    //       loggedIn: false,
+    //     }
+    // }
 
     componentWillMount() {
-        this._isLoggedIn();
+        this.props.isLoggedIn();
       }
     
     
     componentWillReceiveProps(nextState) {
-        if(nextState.state.user.uid !== this.state.user.uid){
-            this._isLoggedIn();
-        }
+        this.props.isLoggedIn();
     }
 
-    _isLoggedIn = async () => {
-        const response = await axios.get("/auth/validate_token");
-        this.setState({
-          user: response.data.data,
-          loggedIn: response.data.success
-        });
-        this.props.addUserToState(response);
-      };
-      
-      _logOut = async () => {
-        console.log("CLICK");
-        const response = await axios.delete("/auth/sign_out");
-        //Forces refresh of browser
-        window.location.reload();
-      };
-
   render() {
-    if (this.state.loggedIn) {
+    if (this.props.state.loggedIn) {
       return (
         <Nav>
         <Logo>
@@ -95,9 +77,9 @@ class NavBar extends Component {
           </Link>
         </Logo>
         <Buttons>
-            <span>Signed In As: {this.state.user.email}</span>
+            <span>Signed In As: {this.props.state.user.email}</span>
             <NavButton>
-            <a href="/" onClick={() => this._logOut()}> Log Out </a>
+            <a href="/" onClick={() => this.props.logOut()}> Log Out </a>
             </NavButton>
         </Buttons>
         </Nav>

@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Home from "./components/Home"
 import NavBar from "./components/NavBar"
+import UserProfile from "./components/UserProfile"
 
 import {parseString} from 'xml2js'
 import {setAxiosDefaults} from './util';
@@ -31,6 +32,7 @@ class App extends Component {
     super();
     this.state = {
       user: {},
+      loggedIn: false,
       error: "",
       languages: {
         to_language_code: null,
@@ -226,6 +228,35 @@ class App extends Component {
     })
   }
 
+  _addUserToState = (response) => {
+    const newState = {...this.state}
+    newState.user = response.data.data
+    newState.loggedIn = true
+    this.setState(newState)
+  }
+
+  _isLoggedIn = async () => {
+    if (this.state.user && this.state.loggedIn){
+      return {
+        user: this.state.user,
+        loggedIn: this.state.loggedIn
+      }
+    }
+    const response = await axios.get("/auth/validate_token");
+    this.setState({
+      user: response.data.data,
+      loggedIn: response.data.success
+    });
+    // this.props.addUserToState(response);
+  };
+
+  _logOut = async () => {
+    console.log("CLICK");
+    const response = await axios.delete("/auth/sign_out");
+    //Forces refresh of browser
+    window.location.reload();
+  };
+
   render() {
 
     const FlashcardComponent = () => (<Flashcard
@@ -249,17 +280,24 @@ class App extends Component {
       state={this.state}
       loadData={this._loadData}/>)
 
+    const UserProfileComponent = () => (<UserProfile 
+      user={this.state.user} />)
+
+    const SignInComponent = () => (<SignIn
+      addUserToState={this._addUserToState} />)
+
     const HomeComponent = () => (<Home state={this.state}/>)
 
     return (
       <Router>
         <div className="App">
           <div>
-            <NavBar addUserToState={this._addUserToState} state={this.state}/>
+            <NavBar addUserToState={this._addUserToState} logOut={this._logOut} isLoggedIn={this._isLoggedIn} state={this.state}/>
           </div>
+          <Route exact path="/user" render={UserProfileComponent} />
           <Route exact path="/" render={HomeComponent}/>
           <Route exact path="/signUp" component={SignUp}/>
-          <Route exact path="/signIn" component={SignIn}/>
+          <Route exact path="/signIn" render={SignInComponent}/>
           <Route exact path="/categories" render={CategoryListComponent}/>
           <Route
             exact
