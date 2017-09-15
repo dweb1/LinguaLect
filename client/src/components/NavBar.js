@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -58,6 +58,11 @@ class NavBar extends Component {
     //     }
     // }
 
+    _handleLogOut = (history) => {
+        this.props.logOut();
+        this.props.history.push('/')
+    }
+
     componentWillMount() {
         this.props.isLoggedIn();
       }
@@ -79,7 +84,7 @@ class NavBar extends Component {
         <Buttons>
             <span>Signed In As: {this.props.state.user.email}</span>
             <NavButton>
-            <a href="/" onClick={() => this.props.logOut()}> Log Out </a>
+            <a href="/" onClick={this._handleLogOut}> Log Out </a>
             </NavButton>
         </Buttons>
         </Nav>
@@ -105,4 +110,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
