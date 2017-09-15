@@ -31,6 +31,9 @@ class SignIn extends Component {
     }
     const response = await axios.post('/auth/sign_in', payload);
     setAxiosHeaders(response.headers);
+    console.log(response)
+    // res.data.data
+    this.props.addUserToState(response);
     this.setState({redirect: true})
   }
   
