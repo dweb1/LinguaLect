@@ -9,7 +9,20 @@ const Form = styled.div`
   background-color: rgb(230, 242, 255);
   border-radius: 4px;
   margin: 20px auto;
-  padding: 5px
+  padding: 5px;
+  height: 200px;
+  align: center;
+  padding-top: 45px;
+  p {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 700;
+    
+  }
+`
+
+const EntryField = styled.div`
+padding: 15px 0;
 `
 
 class SignIn extends Component {
@@ -50,14 +63,15 @@ class SignIn extends Component {
      return (
        <Form>
          <form onSubmit={this._signIn}>
-           <div>
+           <p>Please sign in</p>
+           <EntryField>
              <label htmlFor="email">E-mail: </label>
              <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
-           </div>
-           <div>
+           </EntryField>
+           <EntryField>
              <label htmlFor="password">Password: </label>
              <input onChange={this._handleChange} type="password" name="password" value={this.state.password} />
-           </div>
+           </EntryField>
            <button>Sign In</button>
            <Link to="/signup">Sign Up</Link>
          </form>

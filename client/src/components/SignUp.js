@@ -5,11 +5,25 @@ import {setAxiosHeaders} from '../util'
 import styled from 'styled-components'
 
 const Form = styled.div`
-  width: 30%;
-  background-color: rgb(230, 242, 255);
-  border-radius: 4px;
-  margin: 20px auto;
-  padding: 5px
+width: 40%;
+background-color: rgb(230, 242, 255);
+border-radius: 4px;
+margin: 20px auto;
+padding: 5px;
+height: 225px;
+align: center;
+padding-top: 30px;
+p {
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 700;
+  
+}
+`
+
+const EntryField = styled.div`
+  padding: 15px 0;
+  text-align: center
 `
 
 class SignUp extends Component {
@@ -53,18 +67,19 @@ class SignUp extends Component {
    return (
      <Form>
        <form onSubmit={this._signUp}>
-         <div>
+         <p>Please sign up to use LinguaLect</p>
+         <EntryField>
            <label htmlFor="email">E-mail: </label>
            <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
-         </div>
-         <div>
+         </EntryField>
+         <EntryField>
            <label htmlFor="password">Password: </label>
            <input onChange={this._handleChange} type="text" name="password" value={this.state.password} />
-         </div>
-         <div>
+         </EntryField>
+         <EntryField>
            <label htmlFor="password">Confirm Password: </label>
            <input onChange={this._handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
-         </div>
+         </EntryField>
          
          <button>Sign Up</button>
          <button onClick={this._signIn}>Log In</button>
