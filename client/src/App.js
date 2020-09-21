@@ -136,7 +136,7 @@ class App extends Component {
     try {
       let authToken = await axios.post('https://api.cognitive.microsoft.com/sts/v1.0/issueToken', {}, {
         headers: {
-          'Ocp-Apim-Subscription-Key': '249fcfda00204d70855549cad0545a72'
+          'Ocp-Apim-Subscription-Key': <<API KEY>>
         }
       })
       authToken = `Bearer ${authToken.data}`;
